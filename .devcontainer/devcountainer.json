@@ -1,24 +1,15 @@
 {
-  "name": "AOSP-Max-Clone",
+  "name": "Android-AOSP-Max",
   "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
-  "customizations": {
-    "vscode": {
-      "extensions": ["ms-vscode.cpptools","ms-vsliveshare.vsliveshare"]
-    }
-  },
+  "remoteUser": "vscode",
   "containerUser": "vscode",
   "runArgs": ["--privileged"],
-  "remoteUser": "vscode",
-  "customizations": {},
-  "settings": {},
   "postCreateCommand": "./scripts/install_repo.sh",
-  "features": {},
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/aosp,type=bind,consistency=cached",
-  "forwardPorts": [],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/android,type=bind",
   "mounts": [
     "source=/mnt/aosp-data,target=/workspaces/aosp-data,type=bind"
   ],
   "machine": {
-    "type": "standard-32" 
+    "type": "standard-32"
   }
 }
