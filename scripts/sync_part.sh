@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
-set -euo pipefail
-PART=${1:-1}
-MANIFEST_REPO=${2:-"https://github.com/youruser/aosp-codespace-manifests.git"}
+set -e
+
+PART=${1:? "Need manifest part number"}
+MANIFEST_REPO=${2:-"https://github.com/YOUR_USERNAME/android"}
 MANIFEST_FILE="manifest-part-${PART}.xml"
 WORKDIR=~/aosp
-mkdir -p $WORKDIR
-cd $WORKDIR
 
-# Ensure repo exists
+mkdir -p "$WORKDIR"
+cd "$WORKDIR"
+
 export PATH=~/bin:$PATH
+
 if ! command -v repo >/dev/null; then
   curl -sSf https://storage.googleapis.com/git-repo-downloads/repo -o ~/bin/repo
-  chmod a+x ~/bin/repo
+  chmod +x ~/bin/repo
 fi
 
-# Init (shallow) - depth=1 to reduce history size
-repo init -u ${MANIFEST_REPO} -m ${MANIFEST_FILE} --depth=1
-# Sync with optimized flags (shallow, no tags, current branch only)
+repo init -u "$MANIFEST_REPO" -m "$MANIFEST_FILE" --depth=1
 repo sync -j8 -c --no-tags --optimized-fetch || {
-  echo "repo sync failed or got interrupted; inspect .repo/repo.log"
+  echo "repo sync failed."
   exit 1
 }
