@@ -1,0 +1,24 @@
+{
+  "name": "AOSP-Max-Clone",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-vscode.cpptools","ms-vsliveshare.vsliveshare"]
+    }
+  },
+  "containerUser": "vscode",
+  "runArgs": ["--privileged"],
+  "remoteUser": "vscode",
+  "customizations": {},
+  "settings": {},
+  "postCreateCommand": "./scripts/install_repo.sh",
+  "features": {},
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/aosp,type=bind,consistency=cached",
+  "forwardPorts": [],
+  "mounts": [
+    "source=/mnt/aosp-data,target=/workspaces/aosp-data,type=bind"
+  ],
+  "machine": {
+    "type": "standard-32" 
+  }
+}
