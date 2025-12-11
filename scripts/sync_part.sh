@@ -2,7 +2,7 @@
 set -e
 
 PART=${1:? "Need manifest part number"}
-MANIFEST_REPO=${2:-"https://github.com/YOUR_USERNAME/android"}
+MANIFEST_REPO=${2:-"https://github.com/Ryouse1/android"}
 MANIFEST_FILE="manifest-part-${PART}.xml"
 WORKDIR=~/aosp
 
